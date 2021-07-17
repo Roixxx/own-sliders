@@ -1,0 +1,33 @@
+body {
+	background-color: #FFFFE0;
+}
+
+.container {
+	font-size: 27px;
+}
+
+.slider {
+	display: flex;
+	justify-content: center;
+	justify-content: flex-start;
+	align-items: center;
+	overflow: hidden;
+
+
+	width: 100%;
+	height: 300px;
+	margin-top: 300px;
+	border: 2px solid green;
+}
+
+.slider__items-list {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-wrap: nowrap;
+	
+}
+
+.slider__item {
+	cursor: pointer;
+}
