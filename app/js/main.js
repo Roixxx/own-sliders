@@ -4,30 +4,42 @@ const sliderBox = document.getElementById('slider-box');
 class Slider {
 	constructor(str) {
 		this.str = str;
+		this.shifted = 0;
 	}
+
+	shiftX(x) {
+		sliderBox.style.transform = `translateX(${x}px)`;
+	}
+
 
 	init() {
 
-		sliderBox.ondragstart = () => false; //убираем по-умолчанию
-
-		sliderBox.onmousedown = (event) => {   //при нажатии 
-			let beginX = event.clientX - sliderBox.getBoundingClientRect().left;
+		slider.ondragstart = () => false;                       //убираем по-умолчанию
+		let paddindLeft = slider.getBoundingClientRect().left;  // отступ до слайдера
 
 
-			sliderBox.onmousemove = (event) => { //при перемещении
-				let shift = beginX - (event.clientX - sliderBox.getBoundingClientRect().left);
-				shift = -shift * 0.5;
+		slider.onmousedown = (event) => {   //при нажатии 
+			let beginX = event.clientX - paddindLeft;
 
 
-				sliderBox.style.transform = `translateX(${shift}px)`;
+			slider.onmousemove = (event) => { //при перемещении
+				
+				let shiftX = beginX - (event.clientX - paddindLeft);
+				shiftX = -shiftX * 0.8;
+
+				shiftX = shiftX + this.shifted;
+				
+				this.shiftX(shiftX);
+	
 			}
 
 		}
 
 		document.onmouseup = () => {  // при отпускании ЛКМ - отмена 
-			sliderBox.onmousemove = false;
+			slider.onmousemove = false;
+			this.shifted = sliderBox.style.transform.match(/-?\d+(.\d+)?/gm)[0]; //сколько сдвинул?
+			this.shifted = parseInt(this.shifted);
 		}
-
 	}
 }
 
