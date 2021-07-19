@@ -15,16 +15,14 @@ class Slider {
 	init() {
 
 		slider.ondragstart = () => false;                       //убираем по-умолчанию
-		let paddindLeft = slider.getBoundingClientRect().left;  // отступ до слайдера
-
 
 		slider.onmousedown = (event) => {   //при нажатии 
-			let beginX = event.clientX - paddindLeft;
+			let beginX = event.clientX;
 
 
 			slider.onmousemove = (event) => { //при перемещении
 				
-				let shiftX = beginX - (event.clientX - paddindLeft);
+				let shiftX = beginX - event.clientX;
 				shiftX = -shiftX * 0.8;
 
 				shiftX = shiftX + this.shifted;
